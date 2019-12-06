@@ -1,0 +1,65 @@
+{
+  "components": {
+    "addons": {},
+    "decorators": {},
+    "layouts": {},
+    "plugins": {
+      "MyPythonPlugin": {
+        "src": "src/plugins/MyPythonPlugin",
+        "test": "test/plugins/MyPythonPlugin"
+      },
+      "ModelicaCodeGenerator": {
+        "src": "src/plugins/ModelicaCodeGenerator",
+        "test": "test/plugins/ModelicaCodeGenerator"
+      },
+      "SimulateModelica": {
+        "src": "src/plugins/SimulateModelica",
+        "test": "test/plugins/SimulateModelica"
+      }
+    },
+    "routers": {},
+    "seeds": {
+      "Modelica": {
+        "src": "src/seeds/Modelica"
+      }
+    },
+    "visualizers": {
+      "ModelViz": {
+        "src": "panels/ModelViz/ModelVizPanel",
+        "title": "ModelViz",
+        "panel": "src/visualizers/panels/ModelViz",
+        "secondary": false,
+        "widget": "src/visualizers/widgets/ModelViz"
+      }
+    }
+  },
+  "dependencies": {
+    "addons": {},
+    "decorators": {},
+    "layouts": {},
+    "plugins": {
+      "PyCoreExecutor": {
+        "project": "webgme-icore",
+        "path": "node_modules/webgme-icore/src/plugins/PyCoreExecutor"
+      }
+    },
+    "routers": {
+      "BindingsDocs": {
+        "project": "webgme-bindings",
+        "path": "node_modules/webgme-bindings/src/routers/BindingsDocs",
+        "mount": "bindings-docs"
+      }
+    },
+    "seeds": {},
+    "visualizers": {
+      "ICore": {
+        "src": "panels/ICore/ICorePanel",
+        "title": "ICore",
+        "panel": "src/visualizers/panels/ICore",
+        "secondary": false,
+        "widget": "src/visualizers/widgets/ICore",
+        "project": "webgme-icore"
+      }
+    }
+  }
+}

@@ -1,0 +1,463 @@
+<?xml version = "1.0" encoding="UTF-8"?>
+
+<!-- description of the model interface using an extention of the FMI standard -->
+<fmiModelDescription
+  fmiVersion                          = "1.0"
+
+  modelName                           = "bModel"
+  modelIdentifier                     = "bModel"
+
+  OPENMODELICAHOME                    = "/usr"
+
+  guid                                = "{5d70f1d8-ff31-4b08-af62-021e6cbc81a5}"
+
+  description                         = ""
+  generationTool                      = "OpenModelica Compiler OpenModelica 1.13.0"
+  generationDateAndTime               = "2019-12-03T22:02:47Z"
+
+  variableNamingConvention            = "structured"
+
+  numberOfEventIndicators             = "1"  cmt_numberOfEventIndicators             = "NG:       number of zero crossings,                           FMI"
+  numberOfTimeEvents                  = "0"  cmt_numberOfTimeEvents                  = "NG_SAM:   number of zero crossings that are samples,          OMC"
+
+  numberOfInputVariables              = "0"  cmt_numberOfInputVariables              = "NI:       number of inputvar on topmodel,                     OMC"
+  numberOfOutputVariables             = "0"  cmt_numberOfOutputVariables             = "NO:       number of outputvar on topmodel,                    OMC"
+
+  numberOfExternalObjects             = "0"  cmt_numberOfExternalObjects             = "NEXT:     number of external objects,                         OMC"
+  numberOfFunctions                   = "0"  cmt_numberOfFunctions                   = "NFUNC:    number of functions used by the simulation,         OMC"
+
+  numberOfContinuousStates            = "2"  cmt_numberOfContinuousStates            = "NX:       number of states,                                   FMI"
+  numberOfRealAlgebraicVariables      = "11"  cmt_numberOfRealAlgebraicVariables      = "NY:       number of real variables,                           OMC"
+  numberOfRealAlgebraicAliasVariables = "9"  cmt_numberOfRealAlgebraicAliasVariables = "NA:       number of alias variables,                          OMC"
+  numberOfRealParameters              = "7"  cmt_numberOfRealParameters              = "NP:       number of parameters,                               OMC"
+
+  numberOfIntegerAlgebraicVariables   = "0"  cmt_numberOfIntegerAlgebraicVariables   = "NYINT:    number of alg. int variables,                       OMC"
+  numberOfIntegerAliasVariables       = "0"  cmt_numberOfIntegerAliasVariables       = "NAINT:    number of alias int variables,                      OMC"
+  numberOfIntegerParameters           = "1"  cmt_numberOfIntegerParameters           = "NPINT:    number of int parameters,                           OMC"
+
+  numberOfStringAlgebraicVariables    = "0"  cmt_numberOfStringAlgebraicVariables    = "NYSTR:    number of alg. string variables,                    OMC"
+  numberOfStringAliasVariables        = "0"  cmt_numberOfStringAliasVariables        = "NASTR:    number of alias string variables,                   OMC"
+  numberOfStringParameters            = "0"  cmt_numberOfStringParameters            = "NPSTR:    number of string parameters,                        OMC"
+
+  numberOfBooleanAlgebraicVariables   = "0"  cmt_numberOfBooleanAlgebraicVariables   = "NYBOOL:   number of alg. bool variables,                      OMC"
+  numberOfBooleanAliasVariables       = "0"  cmt_numberOfBooleanAliasVariables       = "NABOOL:   number of alias bool variables,                     OMC"
+  numberOfBooleanParameters           = "1"  cmt_numberOfBooleanParameters           = "NPBOOL:   number of bool parameters,                          OMC" >
+
+
+  <!-- startTime, stopTime, tolerance are FMI specific, all others are OMC specific -->
+  <DefaultExperiment
+    startTime      = "0"
+    stopTime       = "1"
+    stepSize       = "0.002"
+    tolerance      = "1e-06"
+    solver        = "dassl"
+    outputFormat      = "csv"
+    variableFilter      = ".*" />
+
+  <!-- variables in the model -->
+  <ModelVariables>
+
+  <ScalarVariable
+    name = "Mass.s"
+    valueReference = "1000"
+    description = "Absolute position of center of component (s = flange_a.s + L/2 = flange_b.s - L/2)"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "true"
+    alias = "noAlias"
+    classIndex = "0" classType = "rSta"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4597" startColumn = "7" endLine = "4598" endColumn = "93" fileWritable = "false">
+    <Real start="0.0" fixed="false" useNominal="false" unit="m" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "Mass.v"
+    valueReference = "1001"
+    description = "Absolute velocity of component"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "true"
+    alias = "noAlias"
+    classIndex = "1" classType = "rSta"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "1754" startColumn = "7" endLine = "1755" endColumn = "41" fileWritable = "false">
+    <Real start="0.0" fixed="false" useNominal="false" unit="m/s" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "der(Mass.s)"
+    valueReference = "1002"
+    description = "der(Absolute position of center of component (s = flange_a.s + L/2 = flange_b.s - L/2))"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "false"
+    alias = "noAlias"
+    classIndex = "0" classType = "rDer"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4597" startColumn = "7" endLine = "4598" endColumn = "93" fileWritable = "false">
+    <Real fixed="false" useNominal="false" unit="m.s-1" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "der(Mass.v)"
+    valueReference = "1003"
+    description = "der(Absolute velocity of component)"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "false"
+    alias = "noAlias"
+    classIndex = "1" classType = "rDer"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "1754" startColumn = "7" endLine = "1755" endColumn = "41" fileWritable = "false">
+    <Real fixed="false" useNominal="false" unit="m.s-2" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "der(SpeedSensor.flange.s)"
+    valueReference = "1004"
+    description = "Absolute position of flange"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "false"
+    alias = "noAlias"
+    classIndex = "0" classType = "rAlg"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4258" startColumn = "7" endLine = "4258" endColumn = "50" fileWritable = "false">
+    <Real fixed="false" useNominal="false" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "ForceStep.f"
+    valueReference = "1005"
+    description = "Accelerating force acting at flange (= flange.f)"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "false"
+    alias = "noAlias"
+    classIndex = "1" classType = "rAlg"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4981" startColumn = "7" endLine = "4982" endColumn = "59" fileWritable = "false">
+    <Real start="0.0" fixed="false" useNominal="false" unit="N" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "ForceStep.s"
+    valueReference = "1006"
+    description = "Distance between flange and support (= flange.s - support.s)"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "false"
+    alias = "noAlias"
+    classIndex = "2" classType = "rAlg"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4794" startColumn = "7" endLine = "4795" endColumn = "71" fileWritable = "false">
+    <Real start="-0.5" fixed="false" useNominal="false" unit="m" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "ForceStep.s_support"
+    valueReference = "1007"
+    description = "Absolute position of support flange"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "false"
+    alias = "noAlias"
+    classIndex = "3" classType = "rAlg"
+    isProtected = "true" hideResult = "true"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4802" startColumn = "7" endLine = "4802" endColumn = "78" fileWritable = "false">
+    <Real fixed="true" useNominal="false" unit="m" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "Mass.a"
+    valueReference = "1008"
+    description = "Absolute acceleration of component"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "false"
+    alias = "noAlias"
+    classIndex = "4" classType = "rAlg"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "1756" startColumn = "7" endLine = "1756" endColumn = "70" fileWritable = "false">
+    <Real start="0.0" fixed="false" useNominal="false" unit="m/s2" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "Mass.flange_a.s"
+    valueReference = "1009"
+    description = "Absolute position of flange"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "false"
+    alias = "noAlias"
+    classIndex = "5" classType = "rAlg"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4258" startColumn = "7" endLine = "4258" endColumn = "50" fileWritable = "false">
+    <Real start="-0.5" fixed="false" useNominal="false" unit="m" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "Mass.flange_b.f"
+    valueReference = "1010"
+    description = "Cut force directed into flange"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "false"
+    alias = "noAlias"
+    classIndex = "6" classType = "rAlg"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4303" startColumn = "7" endLine = "4303" endColumn = "55" fileWritable = "false">
+    <Real fixed="true" useNominal="false" unit="N" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "SpeedSensor.flange.f"
+    valueReference = "1011"
+    description = "Cut force directed into flange"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "false"
+    alias = "noAlias"
+    classIndex = "7" classType = "rAlg"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4259" startColumn = "7" endLine = "4259" endColumn = "55" fileWritable = "false">
+    <Real fixed="true" useNominal="false" unit="N" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "SpeedSensor.flange.s"
+    valueReference = "1012"
+    description = "Absolute position of flange"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "false"
+    alias = "noAlias"
+    classIndex = "8" classType = "rAlg"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4258" startColumn = "7" endLine = "4258" endColumn = "50" fileWritable = "false">
+    <Real start="0.5" fixed="false" useNominal="false" unit="m" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "SpeedSensor.v"
+    valueReference = "1013"
+    description = "Absolute velocity of flange as output signal"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "false"
+    alias = "noAlias"
+    classIndex = "9" classType = "rAlg"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "3381" startColumn = "7" endLine = "3383" endColumn = "58" fileWritable = "false">
+    <Real fixed="false" useNominal="false" unit="m/s" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "Spring.s_rel"
+    valueReference = "1014"
+    description = "Relative distance (= flange_b.s - flange_a.s)"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "false"
+    alias = "noAlias"
+    classIndex = "10" classType = "rAlg"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4627" startColumn = "7" endLine = "4628" endColumn = "56" fileWritable = "false">
+    <Real start="0.0" fixed="false" useNominal="false" unit="m" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "ForceStep.offsetForce"
+    valueReference = "1015"
+    description = "Offset of force"
+    variability = "parameter" isDiscrete = "true"
+    causality = "internal" isValueChangeable = "true"
+    alias = "noAlias"
+    classIndex = "0" classType = "rPar"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4226" startColumn = "7" endLine = "4226" endColumn = "78" fileWritable = "false">
+    <Real start="1.0" fixed="true" useNominal="false" unit="N" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "ForceStep.startTime"
+    valueReference = "1016"
+    description = "Force = offset for time &lt; startTime"
+    variability = "parameter" isDiscrete = "true"
+    causality = "internal" isValueChangeable = "true"
+    alias = "noAlias"
+    classIndex = "1" classType = "rPar"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4227" startColumn = "7" endLine = "4228" endColumn = "46" fileWritable = "false">
+    <Real start="0.0" fixed="true" useNominal="false" unit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "ForceStep.stepForce"
+    valueReference = "1017"
+    description = "Height of force step (if negative, force is acting as load)"
+    variability = "parameter" isDiscrete = "true"
+    causality = "internal" isValueChangeable = "true"
+    alias = "noAlias"
+    classIndex = "2" classType = "rPar"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4224" startColumn = "7" endLine = "4225" endColumn = "70" fileWritable = "false">
+    <Real start="1.0" fixed="true" useNominal="false" unit="N" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "Mass.L"
+    valueReference = "1018"
+    description = "Length of component, from left flange to right flange (= flange_b.s - flange_a.s)"
+    variability = "parameter" isDiscrete = "true"
+    causality = "internal" isValueChangeable = "true"
+    alias = "noAlias"
+    classIndex = "3" classType = "rPar"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4599" startColumn = "7" endLine = "4600" endColumn = "92" fileWritable = "false">
+    <Real start="1.0" fixed="true" useNominal="false" unit="m" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "Mass.m"
+    valueReference = "1019"
+    description = "Mass of the sliding mass"
+    variability = "parameter" isDiscrete = "true"
+    causality = "internal" isValueChangeable = "true"
+    alias = "noAlias"
+    classIndex = "4" classType = "rPar"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "1749" startColumn = "7" endLine = "1749" endColumn = "69" fileWritable = "false">
+    <Real start="1.0" fixed="true" useNominal="false" min="0.0" unit="kg" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "Spring.c"
+    valueReference = "1020"
+    description = "Spring constant"
+    variability = "parameter" isDiscrete = "true"
+    causality = "internal" isValueChangeable = "true"
+    alias = "noAlias"
+    classIndex = "5" classType = "rPar"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "1888" startColumn = "7" endLine = "1889" endColumn = "26" fileWritable = "false">
+    <Real start="1.0" fixed="true" useNominal="false" min="0.0" unit="N/m" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "Spring.s_rel0"
+    valueReference = "1021"
+    description = "Unstretched spring length"
+    variability = "parameter" isDiscrete = "true"
+    causality = "internal" isValueChangeable = "true"
+    alias = "noAlias"
+    classIndex = "6" classType = "rPar"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "1890" startColumn = "7" endLine = "1890" endColumn = "65" fileWritable = "false">
+    <Real start="0.0" fixed="true" useNominal="false" min="0.0" unit="m" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "ForceStep.flange.f"
+    valueReference = "1022"
+    description = "Cut force directed into flange"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "false"
+    alias = "alias" aliasVariable="ForceStep.f"
+    classIndex = "0" classType = "rAli"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4303" startColumn = "7" endLine = "4303" endColumn = "55" fileWritable = "false">
+    <Real fixed="false" useNominal="false" unit="N" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "ForceStep.flange.s"
+    valueReference = "1023"
+    description = "Absolute position of flange"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "false"
+    alias = "alias" aliasVariable="ForceStep.s"
+    classIndex = "1" classType = "rAli"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4302" startColumn = "7" endLine = "4302" endColumn = "50" fileWritable = "false">
+    <Real fixed="false" useNominal="false" unit="m" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "Mass.flange_a.f"
+    valueReference = "1024"
+    description = "Cut force directed into flange"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "false"
+    alias = "negatedAlias" aliasVariable="ForceStep.f"
+    classIndex = "2" classType = "rAli"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4259" startColumn = "7" endLine = "4259" endColumn = "55" fileWritable = "false">
+    <Real fixed="false" useNominal="false" unit="N" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "Mass.flange_b.s"
+    valueReference = "1025"
+    description = "Absolute position of flange"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "false"
+    alias = "alias" aliasVariable="SpeedSensor.flange.s"
+    classIndex = "3" classType = "rAli"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4302" startColumn = "7" endLine = "4302" endColumn = "50" fileWritable = "false">
+    <Real fixed="false" useNominal="false" unit="m" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "Spring.f"
+    valueReference = "1026"
+    description = "Force between flanges (positive in direction of flange axis R)"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "false"
+    alias = "alias" aliasVariable="ForceStep.f"
+    classIndex = "4" classType = "rAli"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4629" startColumn = "7" endLine = "4630" endColumn = "73" fileWritable = "false">
+    <Real fixed="false" useNominal="false" unit="N" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "Spring.flange_a.f"
+    valueReference = "1027"
+    description = "Cut force directed into flange"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "false"
+    alias = "negatedAlias" aliasVariable="ForceStep.f"
+    classIndex = "5" classType = "rAli"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4259" startColumn = "7" endLine = "4259" endColumn = "55" fileWritable = "false">
+    <Real fixed="false" useNominal="false" unit="N" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "Spring.flange_a.s"
+    valueReference = "1028"
+    description = "Absolute position of flange"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "false"
+    alias = "alias" aliasVariable="ForceStep.s"
+    classIndex = "6" classType = "rAli"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4258" startColumn = "7" endLine = "4258" endColumn = "50" fileWritable = "false">
+    <Real fixed="false" useNominal="false" unit="m" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "Spring.flange_b.f"
+    valueReference = "1029"
+    description = "Cut force directed into flange"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "false"
+    alias = "alias" aliasVariable="ForceStep.f"
+    classIndex = "7" classType = "rAli"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4303" startColumn = "7" endLine = "4303" endColumn = "55" fileWritable = "false">
+    <Real fixed="false" useNominal="false" unit="N" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "Spring.flange_b.s"
+    valueReference = "1030"
+    description = "Absolute position of flange"
+    variability = "continuous" isDiscrete = "false"
+    causality = "internal" isValueChangeable = "false"
+    alias = "alias" aliasVariable="Mass.flange_a.s"
+    classIndex = "8" classType = "rAli"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4302" startColumn = "7" endLine = "4302" endColumn = "50" fileWritable = "false">
+    <Real fixed="false" useNominal="false" unit="m" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "Mass.stateSelect"
+    valueReference = "1031"
+    description = "Priority to use s and v as states"
+    variability = "parameter" isDiscrete = "true"
+    causality = "internal" isValueChangeable = "true"
+    alias = "noAlias"
+    classIndex = "0" classType = "iPar"
+    isProtected = "false" hideResult = "false"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "1750" startColumn = "7" endLine = "1751" endColumn = "80" fileWritable = "false">
+    <Integer start="3" fixed="true" />
+  </ScalarVariable>
+  <ScalarVariable
+    name = "ForceStep.useSupport"
+    valueReference = "1032"
+    description = "= true, if support flange enabled, otherwise implicitly grounded"
+    variability = "parameter" isDiscrete = "true"
+    causality = "internal" isValueChangeable = "false"
+    alias = "noAlias"
+    classIndex = "0" classType = "bPar"
+    isProtected = "false" hideResult = "true"
+    fileName = "/usr/lib/omlibrary/Modelica 3.2.2/Mechanics/Translational.mo" startLine = "4788" startColumn = "7" endLine = "4793" endColumn = "32" fileWritable = "false">
+    <Boolean start="false" fixed="true" />
+  </ScalarVariable>
+
+
+
+  </ModelVariables>
+
+
+</fmiModelDescription>
+
