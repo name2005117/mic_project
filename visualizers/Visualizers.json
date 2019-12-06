@@ -1,8 +1,0 @@
-[
-  {
-    "id": "CheckBoxTable",
-    "title": "CheckBoxTable",
-    "panel": "panels/CheckBoxTable/CheckBoxTablePanel",
-    "DEBUG_ONLY": false
-  }
-]

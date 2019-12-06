@@ -1,3 +1,0 @@
-loadModel(Modelica);getErrorString();
-loadFile("bModel.mo"); getErrorString();
-simulate(bModel,startTime = 0.0, stopTime=1,outputFormat = "csv");getErrorString();
