@@ -1,24 +1,12 @@
 [
   {
-    "id": "ModelViz",
-    "title": "ModelViz",
-    "panel": "panels/ModelViz/ModelVizPanel",
-    "DEBUG_ONLY": false
-  },
-  {
-    "id": "ICore",
-    "title": "ICore",
-    "panel": "panels/ICore/ICorePanel",
+    "id": "graph",
+    "title": "graph",
+    "panel": "panels/graph/graphPanel",
     "DEBUG_ONLY": false
   },
   {
     "id": "newgraph",
-    "title": "newgraph",
-    "panel": "panels/newgraph/newgraphPanel",
-    "DEBUG_ONLY": false
-  },
-  {
-    "id": "newgraph1",
     "title": "newgraph",
     "panel": "panels/newgraph/newgraphPanel",
     "DEBUG_ONLY": false

@@ -5,8 +5,9 @@
  */
 
 define(['plotlyjs',
+        'blob/BlobClient',
         'css!./styles/newgraphWidget.css']
-    , function (Plotly) {
+    , function (Plotly,BlobClient) {
     'use strict';
 
 
@@ -16,65 +17,6 @@ define(['plotlyjs',
 
 
 
-    // a blank canvas
-    //var canvas = document.createElement("canvas");
-    //canvas.style.cssText = 'position:absolute;top: 200px;left: 200px;opacity:0.5;background:#000;align: center';
-    //canvas.width  = 600;
-    //canvas.height = 250;
-
-    // build a ploty graph
-    var myDiv = document.createElement("myDiv");
-    Plotly.plot( myDiv, [{
-        x: [1, 2, 3, 4, 5],
-        y: [1, 2, 4, 8, 16] }], {
-        margin: { t: 0 } } );
-
-    myDiv.style.cssText = 'position:relative;top: 10px;left: 120px;font-size: 40px;text-align: center';
-
-
-    //document.body.appendChild(myDiv);
-
-        // Static html element for demonstartion
-    var arr = ["Mass.s","Mass.v","der(Mass.s)","der(Mass.v)","Mass.a","Mass.flange_a.s","Mass.flange_b.f","Mass.flange_b.s","Spring.f","Spring.s_rel","Fixed.flange.f","Mass.flange_a.f","Spring.flange_a.f","Spring.flange_b.f","Spring.flange_b.s","cool"];
-
-    var selectList = document.createElement("select");
-    selectList.id = "mySelect";
-
-
-    for (var i = 0; i < arr.length; i++) {
-        var option = document.createElement("option");
-        option.value = arr[i];
-        option.text = arr[i];
-
-        selectList.add(option);
-    }
-    selectList.style.cssText = 'position:relative;top: 10px;left: 120px;font-size: 40px;text-align: center';
-
-    // The button used to submit a properity to generate a graph
-        var button = document.createElement("input");
-        button.type = "button";
-        button.value = "Generate a xy graph";
-        button.style.cssText = 'position:relative;top: 10px;left: 150px;font-size: 40px;text-align: center';
-        button.onclick = function () {
-            // do something
-        }
-
-    // function createButton(contain){
-    //     var button = document.createElement("input");
-    //     button.type = "button";
-    //     button.value = "Generate a xy graph";
-    //     button.style.cssText = 'position:relative;top: 10px;left: 150px;font-size: 40px;text-align: center';
-    //     button.onclick = function (contain) {
-    //         // Do something
-    //         var myDiv = document.createElement("myDiv");
-    //         Plotly.plot( myDiv, [{
-    //             x: [1, 2, 3, 4, 5],
-    //             y: [1, 2, 4, 8, 16] }], {
-    //             margin: { t: 0 } } );
-    //
-    //         contain.append(myDiv);
-    //     };
-    // }
 
 
     function newgraphWidget(logger, container) {
@@ -82,11 +24,68 @@ define(['plotlyjs',
 
         this._el = container;
 
+        this._bc = new BlobClient({logger:this._logger});
+
+
         this.nodes = {};
         this._initialize();
 
         this._logger.debug('ctor finished');
-    }
+    };
+
+
+    // global variable, selected attribute
+    var selected_attribute;
+
+
+
+    // div element for ploty graph
+    var myDiv = document.createElement("myDiv");
+
+    // update the value for x
+    var x_axis = [];
+
+    // update the value for y
+    var y_axis = [];
+
+
+    myDiv.style.cssText = 'position:relative;top: 10px;left: 120px;font-size: 40px;text-align: center';
+
+
+
+    // the attribute variable
+    var attribute_list = ["a","b","c","d","e","f"];
+
+    var selectList = document.createElement("select");
+    selectList.id = "mySelect";
+
+
+    selectList.style.cssText = 'position:relative;top: 10px;left: 120px;font-size: 40px;text-align: center';
+
+    // The button used to submit a properity to generate a graph
+    var button = document.createElement("input");
+    button.type = "button";
+    button.value = "Generate a xy graph";
+    button.style.cssText = 'position:relative;top: 10px;left: 150px;font-size: 40px;text-align: center';
+    button.onclick = function () {
+        // get the Attribute from selector
+        var selected_index = selectList.selectedIndex;
+        selected_attribute = selectList.options[selected_index].text;
+
+        // Pass the date to the graph array
+
+        // plot the graph
+        Plotly.plot( myDiv, [{
+            x: x_axis,
+            y: y_axis }], {
+            margin: { t: 0 } } );
+
+
+    };
+
+
+
+
 
     newgraphWidget.prototype._initialize = function () {
         var width = this._el.width(),
@@ -96,17 +95,22 @@ define(['plotlyjs',
         // set widget class
         this._el.addClass(WIDGET_CLASS);
 
+
+
         // Create a dummy header
         this._el.append('<h3>Draw a Graph:</h3>');
 
+        // Generate the dropdown list elements
+        for (var i = 0; i < attribute_list.length; i++) {
+            var option = document.createElement("option");
+            option.value = attribute_list[i];
+            option.text = attribute_list[i];
+            selectList.add(option);
+        }
 
         this._el.append(selectList);
-        //this._el.append(createButton(this._el));
         this._el.append(button);
-        // empty canvas
-        //this._el.append(canvas);
-        // graph
-        this._el.append(myDiv);
+
 
         // Registering to events can be done with jQuery (as normal)
         this._el.on('dblclick', function (event) {
@@ -115,6 +119,13 @@ define(['plotlyjs',
             self.onBackgroundDblClick();
         });
     };
+
+
+
+    // Collecting date method
+    newgraphWidget.prototype.collectData = function () {
+
+    }
 
     newgraphWidget.prototype.onWidgetContainerResize = function (width, height) {
         this._logger.debug('Widget is resizing...');
@@ -163,9 +174,8 @@ define(['plotlyjs',
 
     newgraphWidget.prototype.onBackgroundDblClick = function () {
         //this._el.append('<div>Background was double-clicked!!</div>');
+        this._el.append(myDiv);
 
-
-        //this._el.append(canvas);
     };
 
     /* * * * * * * * Visualizer life cycle callbacks * * * * * * * */
