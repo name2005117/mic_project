@@ -1,4 +1,7 @@
 # mic_project
+
+Note: When creating yhe new project, "seed" seed is the one that we use to build.
+
 MetaModel:
 
 Our Meta Model is constructed referring to the mechanics translational content in MSL (Modelica Standard Library). The Model domain is where we define our 1-dimensional translational mechanical systems and it contains four child nodes as listed below:
