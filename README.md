@@ -1,6 +1,6 @@
 # mic_project
 
-Note: When creating yhe new project, "seed" seed is the one that we use to build.
+Note: When creating the new project, "seed" seed is the one that we use to build.
 
 MetaModel:
 
