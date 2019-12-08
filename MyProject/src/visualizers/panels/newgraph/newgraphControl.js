@@ -61,6 +61,8 @@ define([
         self._currentNodeId = nodeId;
         self._currentNodeParentId = undefined;
 
+        this._buildVisualizer(nodeId);
+
         if (typeof self._currentNodeId === 'string') {
             // Put new node's info into territory rules
             self._selfPatterns = {};
@@ -125,11 +127,11 @@ define([
             case CONSTANTS.TERRITORY_EVENT_UNLOAD:
                 this._onUnload(event.eid);
                 break;
-            // Added for building the button and graph in visualizer widget
-            case 'complete':
-                console.log(event);
-                this._buildVisualizer(event.eid);
-                break;
+            // // Added for building the button and graph in visualizer widget
+            // case 'complete':
+            //     console.log(event);
+            //     this._buildVisualizer(event.eid);
+            //     break;
             default:
                 break;
             }
@@ -141,10 +143,19 @@ define([
     // Function used to pass the hashvalue to widget and build the button and graph
     newgraphControl.prototype._buildVisualizer = function (gmeId) {
         // pass the hash value of the csv output file
-        var node = this._client.getNode(gmeId);
+        let node = this._client.getNode(gmeId);
+
         if (node != null) {
-            var myHash = node.getAttribute('simResults');
+            // let test = node.getAttribute('name');
+            // document.write(test);
+            let myHash = node.getAttribute('simResults');
+            //let myHash = node.getAttribute('name');
+            // document.write(myHash);
             this._widget.setVissualizer(myHash);
+            // let att_arr = node.getAttributeNames();
+            // document.write(att_arr);
+        } else {
+            document.write("no node");
         }
     };
 
