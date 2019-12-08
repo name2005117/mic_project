@@ -24,6 +24,10 @@ define([
         // Initialize core collections and variables
         this._widget = options.widget;
 
+        // added
+        this._core = options.core;
+
+
         this._currentNodeId = null;
         this._currentNodeParentId = undefined;
 
@@ -121,6 +125,11 @@ define([
             case CONSTANTS.TERRITORY_EVENT_UNLOAD:
                 this._onUnload(event.eid);
                 break;
+            // Added for building the button and graph in visualizer widget
+            case 'complete':
+                console.log(event);
+                this._buildVisualizer(event.eid);
+                break;
             default:
                 break;
             }
@@ -128,6 +137,17 @@ define([
 
         this._logger.debug('_eventCallback \'' + events.length + '\' items - DONE');
     };
+
+    // Function used to pass the hashvalue to widget and build the button and graph
+    newgraphControl.prototype._buildVisualizer = function (gmeId) {
+        // pass the hash value of the csv output file
+        var node = this._client.getNode(gmeId);
+        if (node != null) {
+            var myHash = node.getAttribute('simResults');
+            this._widget.setVissualizer(myHash);
+        }
+    };
+
 
     newgraphControl.prototype._onLoad = function (gmeId) {
         var description = this._getObjectDescriptor(gmeId);
