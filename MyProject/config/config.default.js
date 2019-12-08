@@ -6,7 +6,7 @@ var config = require('./config.webgme'),
 // Add/overwrite any additional settings here
 // config.server.port = 8080;
 // config.mongo.uri = 'mongodb://127.0.0.1:27017/webgme_my_app';
-
+config.requirejsPaths.plotlyjs = './node_modules/plotly.js-dist/plotly';
 validateConfig(config);
 config.plugin.allowServerExecution = true;
 config.authentication.allowGuests = true;

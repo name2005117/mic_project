@@ -11,6 +11,7 @@ config.plugin.basePaths.push(__dirname + '/../src/plugins');
 config.plugin.basePaths.push(__dirname + '/../node_modules/webgme-icore/src/plugins');
 config.seedProjects.basePaths.push(__dirname + '/../src/seeds/Modelica');
 config.seedProjects.basePaths.push(__dirname + '/../src/seeds/Mymodelica');
+config.seedProjects.basePaths.push(__dirname + '/../src/seeds/seed');
 
 
 
